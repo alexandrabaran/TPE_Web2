@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-09-2023 a las 23:59:10
+-- Tiempo de generación: 26-09-2023 a las 01:10:28
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,29 +24,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `customers`
---
-
-CREATE TABLE `customers` (
-  `customer_id` int(11) NOT NULL,
-  `customer_name` varchar(45) NOT NULL,
-  `customer_surname` varchar(45) NOT NULL,
-  `customer_phone` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `orders`
 --
 
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `order_address` varchar(45) NOT NULL,
+  `customer_name` varchar(45) NOT NULL,
+  `customer_phone` int(11) NOT NULL,
   `order_date` date NOT NULL,
-  `order_time` time NOT NULL
+  `order_time` time NOT NULL,
+  `order_address` varchar(45) NOT NULL,
+  `product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -69,18 +58,11 @@ CREATE TABLE `products` (
 --
 
 --
--- Indices de la tabla `customers`
---
-ALTER TABLE `customers`
-  ADD PRIMARY KEY (`customer_id`);
-
---
 -- Indices de la tabla `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`order_id`),
-  ADD KEY `fk_Orders_Products` (`product_id`),
-  ADD KEY `fk_Orders_Customers` (`customer_id`);
+  ADD KEY `fk_Orders_Products` (`product_id`);
 
 --
 -- Indices de la tabla `products`
@@ -96,7 +78,6 @@ ALTER TABLE `products`
 -- Filtros para la tabla `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `fk_Orders_Customers` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`),
   ADD CONSTRAINT `fk_Orders_Products` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
 COMMIT;
 
