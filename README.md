@@ -1,5 +1,5 @@
 # TPE_Web2
-- Grupo: 52
+- Grupo: 50
 - Integrantes: Baran Valeska Alexandra (alexandra.baran88@gmail.com)
                Sironi Camila (sironi.camila@gmail.com)
 - Temática: E-commerce de un supermercado
