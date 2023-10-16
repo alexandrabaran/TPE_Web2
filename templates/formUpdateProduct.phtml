@@ -1,0 +1,28 @@
+
+<?php require 'templates/header.phtml'; ?>
+
+<form class="form" action="" method="POST">
+<div class="">  
+        <label>Nombre del producto: </label><input required type="text" name="name">
+</div>
+
+<select>
+        <option value="">Seleccione una categoría</option>
+        <?php foreach($marcas as $marca):?>
+            <option value="<?=$marca->id_marcas?>"><?=$marca->nombre_marca?></option>
+        <?php endforeach ?>
+</select>
+
+<div class="">  
+        <label>Categoría: </label><input required type="text" name="category"> //tiene que ser select
+</div>
+<div class="">  
+        <label>Precio: </label><input required type="text" name="price">
+</div>
+<div class="">  
+        <label>Cantidad disponible: </label><input required type="text" name="quantity">
+</div>
+ <button type="submit"> Modificar producto </button>
+</form>
+
+<?php require 'templates/footer.phtml'; ?>

@@ -1,0 +1,16 @@
+<?php require 'templates/header.phtml'; ?>
+
+<h3>Lista de categorías</h2>
+    <div>
+        <ul>
+            <?php foreach($categories as $category): ?>
+            <li>
+                <div>
+                <h3><?= $category->category_name?></h5>
+                </div>
+            </li>
+            <?php endforeach ?>
+        </ul>
+    </div>
+
+<?php require 'templates/footer.phtml'; ?>
