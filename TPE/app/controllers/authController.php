@@ -33,9 +33,11 @@ class authController{
 
         $userFromDB = $this->model->getAdminByUser($user);
         
-        if(isset($userFromDB) && password_verify($password, $userFromDB->user_password)){
-            authHelper::login($userFromDB);
-            header('Location: ' . BASE_URL . 'panel');
+        if(isset($userFromDB) && !empty($userFromDB)){
+            if(password_verify($password, $userFromDB->user_password)){
+                authHelper::login($userFromDB);
+                header('Location: ' . BASE_URL . 'panel');
+            } 
         } else {
             $this->catView->showError('Usuario inválido');
         }
