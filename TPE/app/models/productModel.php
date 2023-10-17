@@ -1,12 +1,13 @@
 <?php
 
-//require_once 'config.php';
+require_once './app/config.php';
 
 class productModel{
-    protected $db;
+
+    private $db;
      
     public function __construct(){
-        $this->db = new PDO('mysql:host=localhost;dbname=organia;charset=utf8', 'root', '');
+        $this->db = new PDO('mysql:host=' . MYSQL_HOST . ';dbname=' . MYSQL_DB . ';charset=utf8', MYSQL_USER, MYSQL_PASS);
     }
 
     public function getProducts(){
@@ -17,8 +18,6 @@ class productModel{
         return $products;
     }
 
-//falta metodo productList??
-
     public function getProduct($id){
 
         $query = $this->db->prepare('SELECT products.*, categories.category_name as category_name FROM products JOIN categories ON categories.category_id = products.category_id  WHERE product_id = ?');
@@ -27,13 +26,10 @@ class productModel{
         return $products;
     }
 
-
-    //formulario insertar producto
     public function addProduct($name, $category, $price, $quantity){
         $query = $this->db->prepare('INSERT INTO products (product_name, category_id, product_price, product_stock) VALUES (?,?,?,?)');
         $query->execute([$name, $category, $price, $quantity]);
     }
-    //campo borrar producto?? admin tiene que ver los id
 
     public function deleteProduct($id){
         $query = $this->db->prepare('DELETE FROM products WHERE product_id = ?');
