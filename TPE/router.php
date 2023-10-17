@@ -1,9 +1,9 @@
 <?php
 
-require_once "./controllers/category.controller.php";
-require_once "./controllers/home.controller.php";
-require_once './controllers/productController.php';
-require_once './controllers/authController.php';
+require_once "./app/controllers/category.controller.php";
+require_once "./app/controllers/home.controller.php";
+require_once './app/controllers/productController.php';
+require_once './app/controllers/authController.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
