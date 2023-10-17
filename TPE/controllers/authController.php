@@ -21,10 +21,6 @@ class authController{
             $this->view->showLogin();
     }
 
-    public function showPanel(){
-        $this->view->showAdminPanel();
-    }
-
     public function login(){
 
         $user = $_POST['user'];
@@ -37,7 +33,7 @@ class authController{
 
         $userFromDB = $this->model->getAdminByUser($user);
         
-        if($userFromDB && password_verify($password, $userFromDB->user_password)){
+        if(isset($userFromDB) && password_verify($password, $userFromDB->user_password)){
             authHelper::login($userFromDB);
             header('Location: ' . BASE_URL . 'panel');
         } else {
@@ -45,9 +41,13 @@ class authController{
         }
     }
 
+    public function showPanel(){
+        authHelper::verify(); 
+        $this->view->showAdminPanel();
+    }
+
     public function logout() {
-        authHelper::logout();
-        header('Location: ' . BASE_URL);    
+        authHelper::logout();  
     }
 
 }
