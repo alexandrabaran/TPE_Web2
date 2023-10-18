@@ -1,0 +1,20 @@
+<?php require 'templates/header.phtml'; ?>
+  
+    <h3>Lista de productos</h2>
+    <div>
+        <ul>
+            <?php foreach($products as $product): ?>
+            <li> 
+                 <div>
+                     <h3><?= $product->product_name?></h5>
+                     <p>Categoría: <?=$product->category_name?> </p>
+                     <div><button><a href="<?=BASE_URL?>product-details/<?= $product->product_id ?>">Ver detalles</a></button><button><a href="edit-product/<?= $product->product_id ?>">Editar</a></button><button><a href="removeProduct/<?=$product->product_id?>">Eliminar</a></button></div>
+                </div>
+            </li>
+            <?php endforeach ?>
+        </ul>
+    </div>
+
+<button><a href='enterProduct'>Agregar nuevo producto</a></button>
+
+<?php require 'templates/footer.phtml'; ?>
